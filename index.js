@@ -7,3 +7,10 @@ const { convert } = require('./conversion');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+
+app.get('/', (req, res) => {
+  console.log(req.query);
+});
+
+app.listen(6060);
