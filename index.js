@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   console.log(req.query);
-  let converted = convert(req.query.value, req.query.from, req.query.to)
+  let converted = convert(req, req.query.value, req.query.from, req.query.to)
   console.log(converted);
   if (!converted.error) {
     res.send(`Value: ${converted.v} From: ${converted.from} => To: ${converted.to} = ${converted.res}`);
