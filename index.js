@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   console.log(req.query);
+  console.log(req.route.path);
   let converted = convert(req, req.query.value, req.query.from, req.query.to)
   console.log(converted);
   if (!converted.error) {
