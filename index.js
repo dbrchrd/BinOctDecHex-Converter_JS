@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   let converted = convert(req, req.query.value, req.query.from, req.query.to)
   console.log(converted);
   if (!converted.error) {
-    res.send(`Value: ${converted.v} From: ${converted.from} => To: ${converted.to} = ${converted.res}`);
+    res.send(`${converted.v}(${converted.from}) = ${converted.res}(${converted.to})`);
   } else {
     res.send(`Error: ${converted.error}`);
   }
