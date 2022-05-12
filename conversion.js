@@ -9,9 +9,8 @@ module.exports.convert = (req, v, from, to) => {
     )
       return { res: from2(from, to, v), v, from, to };
   } catch (error) {
-    let error_html_response = `The template should be : http://domain.extension/?value=[NUMBER]&from=[2/8/10/16]&to=[2/8/10/16]\nPlease enter: 10 for decimal, 16 for hexadecimal, 8 for octal and 2 for binary.\nPlease enter a different value for "from" and "to".`;
     console.error(error);
-    return { error_html_response };
+    return `The template should be : http://domain.extension/[NUMBER_TO_CONVERT]/[2/8/10/16]/[2/8/10/16]\nPlease enter: 10 for decimal, 16 for hexadecimal, 8 for octal and 2 for binary.\nPlease enter a different value for "from" and "to".`;
   }
 };
 const from2 = (from, to, v) => {
