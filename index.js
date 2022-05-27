@@ -8,17 +8,23 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  console.log(req.query);
-  console.log(req.route.path);
-  let converted = convert(req, req.query.value, req.query.from, req.query.to);
-  console.log(converted);
-  if (!converted.error) {
-    res.send(
-      `${converted.v}<sub>(${converted.from})</sub> = ${converted.res}<sub>(${converted.to})</sub>`
-    );
-  } else {
-    res.send(`Error: ${converted.error}`);
+app.get("/:from/:to/:value", (req, res) => {
+  console.log(req.params);
+  let converted = convert(
+    req,
+    req.params.value,
+    req.params.from,
+    req.params.to
+  );
+  try {
+    res.status(200).json({
+      value: converted.v,
+      from: converted.from,
+      to: converted.to,
+      res: converted.res,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error || converted.error });
   }
 });
 
