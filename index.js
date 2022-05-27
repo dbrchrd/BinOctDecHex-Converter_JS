@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const { convert } = require("./conversion");
 // Configuration
 const app = express();
+let PATH = "127.0.0.1";
+let PORT = 6060;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -29,5 +31,7 @@ app.get("/:from/:to/:value", (req, res) => {
 });
 
 // Listening on port 6060
-app.listen(6060, "127.0.0.1"); // Development
+app.listen(PORT, PATH, () => {
+  console.log(`Running in http://${PATH}:${PORT}/`);
+}); // Development
 // app.listen(6060, "0.0.0.0"); // Production
