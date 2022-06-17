@@ -30,6 +30,12 @@ app.get("/:from/:to/:value", (req, res) => {
   }
 });
 
+app.get("*", (req, res) => {
+  res.status(500).json({
+    error: "The conversion url template is : DOMAIN.EXTENTION/FORMAT_OF_UNCONVERTED_VALUE/FORMAT_OF_CONVERTED_VALUE/VALUE_TO_CONVERT : e.g. DOMAIN.EXTENTION/10/16/1515 -> convert 1515 in base 10 (dec) to base 16 (hex) = 5eb"
+  })
+});
+
 // Listening on port 6060
 app.listen(PORT, PATH, () => {
   console.log(`Running in http://${PATH}:${PORT}/`);
